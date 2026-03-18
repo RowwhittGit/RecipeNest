@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 import { env } from './config/env';
 import { errorHandler } from './middleware/errorHandler';
 import router from './routes/index';
@@ -17,6 +18,7 @@ app.use(cors({
 // ── Body parsing ──────────────────────────────────────────────
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // ── Health check ──────────────────────────────────────────────
 app.get('/health', (_req, res) => {
